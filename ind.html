@@ -6,6 +6,7 @@
     <title>Subrat Kumar Sahu - Professional Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <style>
         :root {
             --primary-color: #0a0a12;
@@ -360,7 +361,7 @@
         .main-photo img {
             width: 100%;
             height: 100%;
-            object-fit: fill
+            object-fit: fill;
             transition: var(--transition);
         }
 
@@ -1313,7 +1314,7 @@
                     <div class="main-photo card-3d">
                         <!-- Placeholder for profile photo -->
                         <div style="width: 100%; height: 100%; background: linear-gradient(135deg, var(--secondary-color), var(--accent-color)); display: flex; align-items: center; justify-content: center; color: var(--text-primary);">
-                           <img src="my pic.jpg" alt="Subrat Kumar Sahu Photo">
+                            <img src="my pic.jpg" alt="Subrat Kumar Sahu Photo">
                         </div>
                     </div>
                     <div class="photo-text">
@@ -1356,7 +1357,7 @@
                             </div>
                         </div>
                         <div style="margin-top: 2rem;">
-                            <a href="#" class="btn" style="margin-right: 1rem;">Download CV</a>
+                            <a href="#" class="btn" id="download-cv" style="margin-right: 1rem;">Download CV</a>
                             <a href="https://www.linkedin.com/in/subrat-kumar-sahu-1484a52b0/" target="_blank" class="btn" style="background: rgba(30, 30, 46, 0.7); color: var(--text-primary); border: 1px solid var(--accent-color);">My LinkedIn ID</a>
                         </div>
                     </div>
@@ -1724,6 +1725,100 @@
             e.preventDefault();
             alert('Thank you for your message! I will get back to you soon.');
             this.reset();
+        });
+
+        // CV Download Functionality
+        document.getElementById('download-cv').addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Create a PDF representation of the CV
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF();
+            
+            // Set up the document
+            doc.setFontSize(20);
+            doc.setTextColor(138, 43, 226); // Purple color
+            doc.text('SUBRAT KUMAR SAHU', 20, 30);
+            
+            doc.setFontSize(12);
+            doc.setTextColor(0, 0, 0); // Black color
+            doc.text('LinkedIn: linkedin.com/in/subrat-kumar-sahu-1484a52b0', 20, 45);
+            doc.text('Email: subratsahu984@gmail.com', 20, 55);
+            doc.text('Mobile: +91 8327780261', 20, 65);
+            
+            // Add a line separator
+            doc.line(20, 75, 190, 75);
+            
+            // Skills Section
+            doc.setFontSize(16);
+            doc.setTextColor(138, 43, 226);
+            doc.text('SKILLS', 20, 90);
+            
+            doc.setFontSize(12);
+            doc.setTextColor(0, 0, 0);
+            doc.text('Languages: C++, Java, Python, JavaScript', 20, 105);
+            doc.text('Frameworks & Web Technologies: HTML, CSS, Bootstrap, Node.js', 20, 115);
+            doc.text('Tools & Platforms: MySQL, Oracle', 20, 125);
+            doc.text('Data Tools: Pandas, NumPy, Matplotlib', 20, 135);
+            doc.text('Soft Skills: Teamwork, Growth Mindset, Time Management, Persuasion', 20, 145);
+            
+            // Projects Section
+            doc.setFontSize(16);
+            doc.setTextColor(138, 43, 226);
+            doc.text('PROJECTS', 20, 165);
+            
+            doc.setFontSize(12);
+            doc.setTextColor(0, 0, 0);
+            doc.text('Blood Bank Management System | MySQL    Nov 25', 20, 180);
+            doc.text('- Designed and implemented a relational database for blood inventory, donors, and recipients.', 25, 190);
+            doc.text('- Created normalized tables with foreign key constraints to ensure data integrity.', 25, 200);
+            doc.text('- Developed secure authentication for administrators and users.', 25, 210);
+            doc.text('- Built SQL queries for insertion, retrieval, and real-time data analysis.', 25, 220);
+            
+            doc.text('E-Commerce Website | HTML, CSS, JavaScript    Apr 25', 20, 240);
+            doc.text('- Developed a responsive, dynamic website for product and customer management.', 25, 250);
+            doc.text('- Added features like filtering, sorting, and client-side validation for better UX.', 25, 260);
+            doc.text('- Optimized layout and performance for seamless cross-device compatibility.', 25, 270);
+            
+            // Add a new page if needed
+            doc.addPage();
+            
+            doc.text('Weather Forecasting System | Python, TensorFlow, JavaScript, Chart.js    Apr 25', 20, 20);
+            doc.text('- Built a real-time weather prediction tool using predictive analytics and ML models.', 25, 30);
+            doc.text('- Integrated live weather APIs for accurate short-term forecasts.', 25, 40);
+            doc.text('- Visualized results through interactive dashboards using Chart.js.', 25, 50);
+            
+            // Certificates Section
+            doc.setFontSize(16);
+            doc.setTextColor(138, 43, 226);
+            doc.text('CERTIFICATES', 20, 70);
+            
+            doc.setFontSize(12);
+            doc.setTextColor(0, 0, 0);
+            doc.text('- Software Engineering - Saylor Academy (Sep 25)', 20, 85);
+            doc.text('- Java Core - Lit Bhubaneswar', 20, 95);
+            
+            // Education Section
+            doc.setFontSize(16);
+            doc.setTextColor(138, 43, 226);
+            doc.text('EDUCATION', 20, 115);
+            
+            doc.setFontSize(12);
+            doc.setTextColor(0, 0, 0);
+            doc.text('Lovely Professional University, Punjab, India', 20, 130);
+            doc.text('Master of Computer Applications (MCA)    Aug 25 - Present', 25, 140);
+            
+            doc.text('Binayak Degree College, Angul, Odisha (Under Utkal University)', 20, 155);
+            doc.text('Bachelor of Science (Computer Science) | Percentage: 81.20%    Aug 22 - Jul 25', 25, 165);
+            
+            doc.text('Indian Public School, Sambalpur, Odisha', 20, 180);
+            doc.text('Intermediate (PCM) | Percentage: 86.8%    Jun 19 - Jul 21', 25, 190);
+            
+            doc.text('Kendriya Vidyalaya, Angul, Odisha', 20, 205);
+            doc.text('Matriculation | Percentage: 85.8%    May 19', 25, 215);
+            
+            // Save the PDF
+            doc.save('Subrat_Kumar_Sahu_CV.pdf');
         });
 
         // Scroll animation for sections
