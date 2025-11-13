@@ -26,6 +26,24 @@
             --neon-glow: 0 0 10px var(--accent-glow), 0 0 20px var(--accent-glow), 0 0 30px var(--accent-glow);
         }
 
+        /* Light mode variables */
+        .light-mode {
+            --primary-color: #f0f2f5;
+            --secondary-color: #ffffff;
+            --accent-color: #6a0dad;
+            --accent-light: #8a2be2;
+            --accent-dark: #4b0082;
+            --accent-glow: rgba(106, 13, 173, 0.3);
+            --text-primary: #1a1a2e;
+            --text-secondary: #4a5568;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --border-color: #cbd5e0;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --glass-bg: rgba(0, 0, 0, 0.05);
+            --glass-border: rgba(0, 0, 0, 0.1);
+            --neon-glow: 0 0 10px var(--accent-glow), 0 0 20px var(--accent-glow);
+        }
+
         * {
             margin: 0;
             padding: 0;
@@ -40,9 +58,41 @@
         body {
             line-height: 1.6;
             color: var(--text-primary);
-            background: linear-gradient(135deg, var(--primary-color), #1a1a2e);
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             overflow-x: hidden;
             perspective: 1000px;
+            transition: background 0.5s ease, color 0.5s ease;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1001;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            padding: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .theme-toggle:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .theme-toggle i {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+            transition: var(--transition);
         }
 
         /* Advanced Background Effects */
@@ -129,8 +179,8 @@
             width: 100%;
             height: 100%;
             background-image: 
-                linear-gradient(rgba(138, 43, 226, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(138, 43, 226, 0.1) 1px, transparent 1px);
+                linear-gradient(var(--accent-glow) 1px, transparent 1px),
+                linear-gradient(90deg, var(--accent-glow) 1px, transparent 1px);
             background-size: 50px 50px;
             z-index: -2;
             transform: perspective(500px) rotateX(60deg);
@@ -160,7 +210,7 @@
 
         .particle {
             position: absolute;
-            background: rgba(138, 43, 226, 0.5);
+            background: var(--accent-glow);
             border-radius: 50%;
             pointer-events: none;
         }
@@ -206,9 +256,17 @@
             transition: var(--transition);
         }
 
+        .light-mode header {
+            background-color: rgba(240, 242, 245, 0.9);
+        }
+
         header.scrolled {
             padding: 0.5rem 0;
             background-color: rgba(10, 10, 18, 0.95);
+        }
+
+        .light-mode header.scrolled {
+            background-color: rgba(240, 242, 245, 0.95);
         }
 
         nav {
@@ -297,6 +355,10 @@
             min-height: 100vh;
             display: flex;
             align-items: center;
+        }
+
+        .light-mode .photo-section {
+            background: linear-gradient(135deg, rgba(240, 242, 245, 0.9), rgba(255, 255, 255, 0.8));
         }
 
         .photo-content {
@@ -534,7 +596,7 @@
             display: flex;
             align-items: center;
             padding: 1.5rem;
-            background: rgba(30, 30, 46, 0.7);
+            background: var(--card-bg);
             border-radius: 15px;
             transition: var(--transition);
             transform-style: preserve-3d;
@@ -624,6 +686,10 @@
             display: flex;
             align-items: center;
             transition: var(--transition);
+        }
+
+        .light-mode .skill-list li {
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
         }
 
         .skill-list li:hover {
@@ -797,6 +863,10 @@
             padding: 1.5rem;
             border-radius: 10px;
             border-left: 4px solid var(--accent-color);
+        }
+
+        .light-mode .certificate-details {
+            background: rgba(255, 255, 255, 0.7);
         }
 
         .certificate-details p {
@@ -975,6 +1045,10 @@
             transform-style: preserve-3d;
         }
 
+        .light-mode .highlight-item {
+            background: rgba(255, 255, 255, 0.7);
+        }
+
         .highlight-item:hover {
             transform: translateY(-15px) scale(1.05);
             background: rgba(138, 43, 226, 0.15);
@@ -1013,7 +1087,7 @@
             align-items: center;
             margin-bottom: 2rem;
             padding: 1.5rem;
-            background: rgba(30, 30, 46, 0.7);
+            background: var(--card-bg);
             border-radius: 15px;
             transition: var(--transition);
             transform-style: preserve-3d;
@@ -1056,7 +1130,7 @@
             padding: 1rem;
             border: 1px solid var(--border-color);
             border-radius: 10px;
-            background-color: rgba(30, 30, 46, 0.7);
+            background-color: var(--card-bg);
             color: var(--text-primary);
             transition: var(--transition);
             font-size: 1rem;
@@ -1068,6 +1142,11 @@
             border-color: var(--accent-color);
             box-shadow: 0 0 0 3px rgba(138, 43, 226, 0.3);
             background-color: rgba(40, 40, 60, 0.7);
+        }
+
+        .light-mode .form-group input:focus,
+        .light-mode .form-group textarea:focus {
+            background-color: rgba(255, 255, 255, 0.9);
         }
 
         /* Footer */
@@ -1097,7 +1176,7 @@
             align-items: center;
             justify-content: center;
             border-radius: 50%;
-            background: rgba(30, 30, 46, 0.7);
+            background: var(--card-bg);
             transform-style: preserve-3d;
         }
 
@@ -1174,6 +1253,10 @@
                 padding: 1.5rem 0;
                 box-shadow: var(--shadow);
                 backdrop-filter: blur(15px);
+            }
+
+            .light-mode .nav-links {
+                background-color: rgba(240, 242, 245, 0.95);
             }
 
             .nav-links.active {
@@ -1259,6 +1342,11 @@
     </style>
 </head>
 <body>
+    <!-- Theme Toggle -->
+    <div class="theme-toggle" id="theme-toggle">
+        <i class="fas fa-moon"></i>
+    </div>
+
     <!-- Advanced Background Effects -->
     <div class="background-effects">
         <div class="floating-shapes">
@@ -1359,6 +1447,7 @@
                         <div style="margin-top: 2rem;">
                             <a href="#" class="btn" id="download-cv" style="margin-right: 1rem;">Download CV</a>
                             <a href="https://www.linkedin.com/in/subrat-kumar-sahu-1484a52b0/" target="_blank" class="btn" style="background: rgba(30, 30, 46, 0.7); color: var(--text-primary); border: 1px solid var(--accent-color);">My LinkedIn ID</a>
+                            <a href="https://github.com/Subrat-18" target="_blank" class="btn" style="background: rgba(30, 30, 46, 0.7); color: var(--text-primary); border: 1px solid var(--accent-color); margin-top: 1rem;">My GitHub</a>
                         </div>
                     </div>
                 </div>
@@ -1481,6 +1570,9 @@
                                 <span class="tech-tag">MongoDB</span>
                                 <span class="tech-tag">Stripe API</span>
                             </div>
+                            <div style="margin-top: 1rem;">
+                                <a href="https://github.com/Subrat-18/ecommerce-platform" target="_blank" class="btn" style="padding: 0.5rem 1rem; font-size: 0.8rem;">View on GitHub</a>
+                            </div>
                         </div>
                     </div>
                     <div class="project-card card-3d">
@@ -1496,6 +1588,9 @@
                                 <span class="tech-tag">MySQL</span>
                                 <span class="tech-tag">React</span>
                             </div>
+                            <div style="margin-top: 1rem;">
+                                <a href="https://github.com/Subrat-18/blood-bank-system" target="_blank" class="btn" style="padding: 0.5rem 1rem; font-size: 0.8rem;">View on GitHub</a>
+                            </div>
                         </div>
                     </div>
                     <div class="project-card card-3d">
@@ -1510,6 +1605,9 @@
                                 <span class="tech-tag">TensorFlow</span>
                                 <span class="tech-tag">JavaScript</span>
                                 <span class="tech-tag">Chart.js</span>
+                            </div>
+                            <div style="margin-top: 1rem;">
+                                <a href="https://github.com/Subrat-18/weather-forecast" target="_blank" class="btn" style="padding: 0.5rem 1rem; font-size: 0.8rem;">View on GitHub</a>
                             </div>
                         </div>
                     </div>
@@ -1532,7 +1630,8 @@
                         <div class="certificate-body">
                             <div class="certificate-image">
                                 <img src="Screenshot 2025-10-30 192943.png" alt="Saylor Academy Certificate">
-                              
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1553,13 +1652,7 @@
                     </div>
                     <div class="hackathon-body">
                         <div class="hackathon-image">
-                             <img src="Screenshot 2025-10-30 193024.png" alt="Tech Blitz Hackathon Certificate">
-                          
-                               
-                            </div>
-                        </div>
-                        
-                       
+                            <img src="Screenshot 2025-10-30 193024.png" alt="Tech Blitz Hackathon Certificate">
                         </div>
                     </div>
                 </div>
@@ -1586,6 +1679,12 @@
                             <div class="contact-icon">🔗</div>
                             <div>
                                 <a href="https://www.linkedin.com/in/subrat-kumar-sahu-1484a52b0/" target="_blank" style="color: var(--accent-light);">LinkedIn Profile</a>
+                            </div>
+                        </div>
+                        <div class="contact-item card-3d">
+                            <div class="contact-icon"><i class="fab fa-github"></i></div>
+                            <div>
+                                <a href="https://github.com/Subrat-18" target="_blank" style="color: var(--accent-light);">GitHub Profile</a>
                             </div>
                         </div>
                     </div>
@@ -1618,13 +1717,29 @@
             <div class="social-links">
                 <a href="https://www.linkedin.com/in/subrat-kumar-sahu-1484a52b0/" target="_blank"><i class="fab fa-linkedin"></i></a>
                 <a href="mailto:subratsahu984@gmail.com"><i class="fas fa-envelope"></i></a>
-                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="https://github.com/Subrat-18" target="_blank"><i class="fab fa-github"></i></a>
             </div>
         </div>
     </footer>
 
     <script>
         // Advanced JavaScript for enhanced UI/UX
+
+        // Theme Toggle Functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const themeIcon = themeToggle.querySelector('i');
+        
+        // Check for saved theme preference or default to dark
+        const currentTheme = localStorage.getItem('theme') || 'dark';
+        document.body.classList.toggle('light-mode', currentTheme === 'light');
+        themeIcon.className = currentTheme === 'light' ? 'fas fa-sun' : 'fas fa-moon';
+        
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('light-mode');
+            const isLightMode = document.body.classList.contains('light-mode');
+            themeIcon.className = isLightMode ? 'fas fa-sun' : 'fas fa-moon';
+            localStorage.setItem('theme', isLightMode ? 'light' : 'dark');
+        });
 
         // Mobile Navigation Toggle
         document.querySelector('.hamburger').addEventListener('click', function() {
@@ -1665,40 +1780,41 @@
             doc.text('LinkedIn: linkedin.com/in/subrat-kumar-sahu-1484a52b0', 20, 45);
             doc.text('Email: subratsahu984@gmail.com', 20, 55);
             doc.text('Mobile: +91 8327780261', 20, 65);
+            doc.text('GitHub: github.com/Subrat-18', 20, 75); // Updated GitHub link
             
             // Add a line separator
-            doc.line(20, 75, 190, 75);
+            doc.line(20, 85, 190, 85);
             
             // Skills Section
             doc.setFontSize(16);
             doc.setTextColor(138, 43, 226);
-            doc.text('SKILLS', 20, 90);
+            doc.text('SKILLS', 20, 100);
             
             doc.setFontSize(12);
             doc.setTextColor(0, 0, 0);
-            doc.text('Languages: C++, Java, Python, JavaScript', 20, 105);
-            doc.text('Frameworks & Web Technologies: HTML, CSS, Bootstrap, Node.js', 20, 115);
-            doc.text('Tools & Platforms: MySQL, Oracle', 20, 125);
-            doc.text('Data Tools: Pandas, NumPy, Matplotlib', 20, 135);
-            doc.text('Soft Skills: Teamwork, Growth Mindset, Time Management, Persuasion', 20, 145);
+            doc.text('Languages: C++, Java, Python, JavaScript', 20, 115);
+            doc.text('Frameworks & Web Technologies: HTML, CSS, Bootstrap, Node.js', 20, 125);
+            doc.text('Tools & Platforms: MySQL, Oracle', 20, 135);
+            doc.text('Data Tools: Pandas, NumPy, Matplotlib', 20, 145);
+            doc.text('Soft Skills: Teamwork, Growth Mindset, Time Management, Persuasion', 20, 155);
             
             // Projects Section
             doc.setFontSize(16);
             doc.setTextColor(138, 43, 226);
-            doc.text('PROJECTS', 20, 165);
+            doc.text('PROJECTS', 20, 175);
             
             doc.setFontSize(12);
             doc.setTextColor(0, 0, 0);
-            doc.text('Blood Bank Management System | MySQL    Nov 25', 20, 180);
-            doc.text('- Designed and implemented a relational database for blood inventory, donors, and recipients.', 25, 190);
-            doc.text('- Created normalized tables with foreign key constraints to ensure data integrity.', 25, 200);
-            doc.text('- Developed secure authentication for administrators and users.', 25, 210);
-            doc.text('- Built SQL queries for insertion, retrieval, and real-time data analysis.', 25, 220);
+            doc.text('Blood Bank Management System | MySQL    Nov 25', 20, 190);
+            doc.text('- Designed and implemented a relational database for blood inventory, donors, and recipients.', 25, 200);
+            doc.text('- Created normalized tables with foreign key constraints to ensure data integrity.', 25, 210);
+            doc.text('- Developed secure authentication for administrators and users.', 25, 220);
+            doc.text('- Built SQL queries for insertion, retrieval, and real-time data analysis.', 25, 230);
             
-            doc.text('E-Commerce Website | HTML, CSS, JavaScript    Apr 25', 20, 240);
-            doc.text('- Developed a responsive, dynamic website for product and customer management.', 25, 250);
-            doc.text('- Added features like filtering, sorting, and client-side validation for better UX.', 25, 260);
-            doc.text('- Optimized layout and performance for seamless cross-device compatibility.', 25, 270);
+            doc.text('E-Commerce Website | HTML, CSS, JavaScript    Apr 25', 20, 250);
+            doc.text('- Developed a responsive, dynamic website for product and customer management.', 25, 260);
+            doc.text('- Added features like filtering, sorting, and client-side validation for better UX.', 25, 270);
+            doc.text('- Optimized layout and performance for seamless cross-device compatibility.', 25, 280);
             
             // Add a new page if needed
             doc.addPage();
